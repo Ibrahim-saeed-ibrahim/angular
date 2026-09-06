@@ -1,0 +1,79 @@
+@if (authService.currentUser()) {
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="logo-box">
+        <span>Task Manager</span>
+      </div>
+
+      <nav class="nav-list">
+        <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
+          <i class="fa-solid fa-border-all"></i> Dashboard
+        </a>
+        
+        <a class="nav-link" routerLink="/projects" routerLinkActive="active">
+          <i class="fa-regular fa-folder"></i> Projects
+        </a>
+        
+        <a class="nav-link" routerLink="/tasks" routerLinkActive="active">
+          <i class="fa-solid fa-list-check"></i> Tasks
+        </a>
+        
+        <a class="nav-link" routerLink="/calendar" routerLinkActive="active">
+          <i class="fa-regular fa-calendar"></i> Calendar
+        </a>
+      </nav>
+
+      <button class="btn-logout" (click)="onLogout()">
+        <i class="fa-solid fa-arrow-right-to-bracket"></i> Log out
+      </button>
+    </aside>
+
+   
+    <main class="main-content">
+        <header class="top-bar">
+          <div class="search-wrap">
+            <input 
+              type="text" 
+              placeholder="Search tasks..." 
+              [ngModel]="searchQuery()"
+              (ngModelChange)="onSearch($event)"
+            />
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          </div>
+
+      <div class="user-wrap">
+        <div class="avatar">
+          <i class="fa-solid fa-user"></i>
+        </div>
+      </div>
+    </header>
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+} @else {
+ 
+  <router-outlet></router-outlet>
+}
+
+    <!-- <main class="main-wrap">
+      <header class="top-bar">
+        <div class="search-wrap">
+          <input type="text" placeholder="Search" />
+          <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+        </div>
+
+        <div class="user-wrap">
+          <span><i class="fa-regular fa-bell"></i></span>
+          <div class="avatar"><i class="fa-solid fa-user"></i></div>
+        </div>
+      </header>
+
+    
+      <div class="page-body">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+} @else {
+  <router-outlet></router-outlet>
+} -->

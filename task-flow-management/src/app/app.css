@@ -1,0 +1,129 @@
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #ffffff;
+}
+
+.sidebar {
+  width: 15rem; 
+  flex-shrink: 0; 
+  border-right: 0.0625rem solid #f1f5f9;
+  padding: 1.5rem 1rem; 
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; 
+  font-weight: 700;
+  font-size: 1.125rem; 
+  color: #1e293b;
+  margin-bottom: 2rem; 
+  padding-left: 0.5rem;
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  padding: 0.625rem 1rem; 
+  border-radius: 0.5rem; 
+  color: #64748b;
+  font-weight: 500;
+  font-size: 0.875rem; 
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+
+.nav-link.active {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.btn-logout {
+  background-color: #fef2f2;
+  color: #991b1b;
+  border: none;
+  padding: 0.625rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+/* حاوية المحتوى الرئيسي المنفصلة عن الـ Sidebar */
+.main-content {
+  flex: 1;
+  min-width: 0;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.top-bar {
+  min-height: 4rem; 
+  border-bottom: 0.0625rem solid #f1f5f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem; 
+}
+
+.search-wrap {
+  position: relative;
+  flex: 1; 
+  max-width: 60rem;
+}
+
+.search-wrap input {
+  width: 100%;
+  padding: 0.625rem 1.25rem;
+  padding-right: 2.5rem; 
+  border-radius: 0.5rem;
+  border: 0.0625rem solid #e2e8f0;
+  background-color: #ffffff;
+  font-size: 0.875rem;
+  box-sizing: border-box;
+}
+
+.search-icon {
+  position: absolute;
+  right: 0.75rem; 
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.75rem;
+  opacity: 0.5;
+}
+
+.user-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem; 
+}
+
+.avatar {
+  width: 2rem; 
+  height: 2rem;
+  border-radius: 50%;
+  background-color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+}

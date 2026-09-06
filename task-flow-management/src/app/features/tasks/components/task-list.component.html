@@ -1,0 +1,155 @@
+@if (isModalOpen()) {
+  <div class="modal-backdrop" (click)="closeModal()">
+    <div class="modal-box" (click)="$event.stopPropagation()">
+      <h3>Add New Task</h3>
+      
+      <div class="field-group">
+        <label>Task Title</label>
+        <input 
+          type="text" 
+          [ngModel]="newTaskName()" 
+          (ngModelChange)="newTaskName.set($event)"
+          placeholder="Enter task name..."
+        />
+      </div>
+      <div class="field-group">
+        <label>Task description</label>
+        <input 
+          type="text" 
+          [ngModel]="newTaskdescription()" 
+          (ngModelChange)="newTaskdescription.set($event)"
+          placeholder="Enter task description..."
+        />
+      </div>
+
+      <div class="field-group">
+        <label>Status</label>
+        <select 
+          [ngModel]="newTaskStatus()" 
+          (ngModelChange)="newTaskStatus.set($event)">
+          <option value="To Do">To Do</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Done">Done</option>
+        </select>
+      </div>
+
+      <div class="modal-footer">
+        <button class="cancel-btn" (click)="closeModal()">Cancel</button>
+        <button class="save-btn" (click)="submitTask()">Add Task</button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- 1. الهيدر منفصل تماماً في الأعلى -->
+<section class="content-head">
+  <h2>Tasks</h2>
+  <div class="actions">
+    <button class="btn-icon"><i class="fa-solid fa-arrow-left-long"></i></button>
+    <button class="btn-icon"><i class="fa-solid fa-arrow-right"></i></button>
+    <button class="btn-icon"><i class="fa-solid fa-user-group"></i></button>
+    <button class="btn-icon"><i class="fa-solid fa-sliders"></i></button>
+    
+    @if (isAdmin()) {
+      <button class="btn-add" (click)="openModal()">New task +</button>
+    }
+  </div>
+</section>
+
+<!-- 2. الجريد يحتوى على الأعمدة والتاسكات المفلترة حسب البحث -->
+<div class="board-grid" cdkDropListGroup>
+
+  <!-- To Do Column -->
+  <div class="board-col todo-col">
+    <div class="col-title">
+      <span class="status-icon"><i class="fa-regular fa-square"></i></span>
+      <h3>To do</h3>
+    </div>
+    <div 
+      class="cards-list"
+      cdkDropList
+      [cdkDropListData]="taskService.filteredTasks()"
+      (cdkDropListDropped)="onDrop($event, 'To Do')">
+      @for (task of taskService.filteredTasks(); track task.id) {
+        @if (task.status === 'To Do') {
+          <div class="task-item" cdkDrag>
+            <div class="item-head">
+              <div class="user-avatar"><i class="fa-solid fa-user"></i></div>
+              @if (isAdmin()) {
+                <div class="item-actions">
+                  <button class="action-btn" (click)="openEditModal(task)"><i class="fa-solid fa-pen"></i></button>
+                  <button class="action-btn" (click)="deleteTask(task.id)"><i class="fa-regular fa-trash-can"></i></button>
+                </div>
+              }
+            </div>
+            <p class="item-title">{{ task.name }}</p>
+            <p class="item-desc">{{ task.description }}</p>
+          </div>
+        }
+      }
+    </div>
+  </div>
+
+  <!-- In Progress Column -->
+  <div class="board-col progress-col">
+    <div class="col-title">
+      <span class="status-icon"><i class="fa-solid fa-hourglass"></i></span>
+      <h3>In progress</h3>
+    </div>
+    <div 
+      class="cards-list"
+      cdkDropList
+      [cdkDropListData]="taskService.filteredTasks()"
+      (cdkDropListDropped)="onDrop($event, 'In Progress')">
+      @for (task of taskService.filteredTasks(); track task.id) {
+        @if (task.status === 'In Progress') {
+          <div class="task-item" cdkDrag>
+            <div class="item-head">
+              <div class="user-avatar"><i class="fa-solid fa-user"></i></div>
+              @if (isAdmin()) {
+                <div class="item-actions">
+                  <button class="action-btn" (click)="openEditModal(task)"><i class="fa-solid fa-pen"></i></button>
+                  <button class="action-btn" (click)="deleteTask(task.id)"><i class="fa-regular fa-trash-can"></i></button>
+                </div>
+              }
+            </div>
+            <p class="item-title">{{ task.name }}</p>
+            <p class="item-desc">{{ task.description }}</p>
+          </div>
+        }
+      }
+    </div>
+  </div>
+
+  <!-- Done Column -->
+  <div class="board-col done-col">
+    <div class="col-title">
+      <span class="status-icon"><i class="fa-regular fa-square-check"></i></span>
+      <h3>Done</h3>
+    </div>
+    <div 
+      class="cards-list"
+      cdkDropList
+      [cdkDropListData]="taskService.filteredTasks()"
+      (cdkDropListDropped)="onDrop($event, 'Done')">
+      @for (task of taskService.filteredTasks(); track task.id) {
+        @if (task.status === 'Done') {
+          <div class="task-item" cdkDrag>
+            <div class="item-head">
+              <div class="user-avatar"><i class="fa-solid fa-user"></i></div>
+              @if (isAdmin()) {
+                <div class="item-actions">
+                  <button class="action-btn" (click)="openEditModal(task)"><i class="fa-solid fa-pen"></i></button>
+                  <button class="action-btn" (click)="deleteTask(task.id)"><i class="fa-regular fa-trash-can"></i></button>
+                </div>
+              }
+            </div>
+            <p class="item-title">{{ task.name }}</p>
+            <p class="item-desc">{{ task.description }}</p>
+          </div>
+        }
+      }
+    </div>
+  </div>
+
+</div>
