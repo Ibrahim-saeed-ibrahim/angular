@@ -1,10 +1,12 @@
-import { Injectable , signal, effect, computed } from '@angular/core';
+import { Injectable , signal, effect, computed, inject } from '@angular/core';
 import { Task } from '../models/task.model';
+import { AuthService } from '../../../shared/services/auth';
+import { Roles } from '../../../shared/models/user.model';
 @Injectable({
   providedIn: 'root' ,
 })
 export class TaskService {
-
+    private authService = inject(AuthService);
     searchQuery = signal('');
     tasksSignal = signal<Task[]>(
         localStorage.getItem('tasks') 
@@ -32,12 +34,17 @@ export class TaskService {
       );
     });
   deleteTask(id: number): void {
-    this.tasksSignal.update(tasks => tasks.filter(task => task.id !== id));
+      if (this.authService.currentUser()?.role === Roles.ADMIN) {
+          this.tasksSignal.update(tasks => tasks.filter(task => task.id !== id));
+}
   }
     updateTask(updatedTask: Task) {
-      this.tasksSignal.update((tasks) =>
-        tasks.map((t) => (t.id === updatedTask.id ? updatedTask : t))
+        if (this.authService.currentUser()?.role === Roles.ADMIN) {
+              this.tasksSignal.update((tasks) =>
+              tasks.map((t) => (t.id === updatedTask.id ? updatedTask : t))
       );
+
+      }
     }
   constructor() {
   effect(() => {localStorage.setItem('tasks', JSON.stringify(this.tasksSignal() ));
