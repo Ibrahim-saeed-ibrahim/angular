@@ -1,1 +1,24 @@
-<p>calendar works!</p>
+<div class="calendar-container">
+  <h2>Calendar View</h2>
+  <div class="calendar-grid week-header">
+    @for (dayName of weekDays; track dayName) {
+      <div class="day-name">{{ dayName }}</div>
+    }
+  </div>
+
+  
+  <div class="calendar-grid month-days">
+    @for (day of days; track day) {
+      <div class="day-cell">
+        <span class="day-number">{{ day }}</span>
+        
+       
+        @if (day === 12 || day === 18) {
+          <div class="event-badge">
+            Task Due
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>
