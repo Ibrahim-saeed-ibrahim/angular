@@ -1,1 +1,25 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+  <h2>Dashboard</h2>
+
+  <div class="stats-grid">
+    <div class="card">
+      <h3>Total Tasks</h3>
+      <p>{{ totaltasks() }}</p>
+    </div>
+
+    <div class="card">
+      <h3>To Do</h3>
+      <p>{{ todocount() }}</p>
+    </div>
+
+    <div class="card">
+      <h3>In Progress</h3>
+      <p>{{ inprogcount() }}</p>
+    </div>
+
+    <div class="card">
+      <h3>Done</h3>
+      <p>{{ donecount() }}</p>
+    </div>
+  </div>
+</div>
