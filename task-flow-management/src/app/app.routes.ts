@@ -3,7 +3,7 @@ import { TaskListComponent } from './features/tasks/components/task-list.compone
 import { AuthService } from './shared/services/auth';
 import { authGuard } from './shared/guards/auth-guard';
 import {LoginComponent} from './features/tasks/components/login';
-import { Dashboard } from './features/dashboard/dashboard';
+import { DashboardComponent } from './features/dashboard/dashboard';
 import { Projects } from './features/projects/projects';
 import { Calendar } from './features/calendar/calendar';
 
@@ -14,7 +14,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   
   
-{ path: 'dashboard', component: Dashboard, canActivate: [authGuard] },
+{ path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },
   { path: 'tasks', component: TaskListComponent, canActivate: [authGuard] },
   { path: 'projects', component: Projects, canActivate: [authGuard] },
   { path: 'calendar', component: Calendar, canActivate: [authGuard] },
