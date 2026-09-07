@@ -1,1 +1,18 @@
-<p>projects works!</p>
+<div class="projects-container">
+  <h2>Projects</h2>
+
+  <div class="projects-grid">
+    @for (project of projects; track project.id) {
+      <div class="project-card">
+        <div class="project-header">
+          <i class="fa-solid fa-folder-open"></i>
+          <h3>{{ project.name }}</h3>
+        </div>
+        <p class="description">{{ project.description }}</p>
+        <div class="project-footer">
+          <span>Active Tasks: <strong>{{ getTaskCount() }}</strong></span>
+        </div>
+      </div>
+    }
+  </div>
+</div>
