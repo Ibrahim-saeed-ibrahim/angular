@@ -1,0 +1,28 @@
+<header class="top-bar">
+  <div class="top-row">
+    <div class="search-wrap">
+      <input 
+        type="text" 
+        placeholder="Search tasks..." 
+        [ngModel]="searchQuery()"
+        (ngModelChange)="onSearch($event)"
+      />
+      <i class="fa-solid fa-magnifying-glass search-icon"></i>
+    </div>
+
+    <div class="user-wrap">
+      <div class="avatar">
+        <i class="fa-solid fa-user"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-row">
+    <div class="page-title">
+      <ng-content select="[pageTitle]"></ng-content>
+    </div>
+    <div class="page-actions">
+      <ng-content select="[pageActions]"></ng-content>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,23 @@
+<div class="calendar-container">
+  <h2>Calendar View</h2>
+  <div class="calendar-grid week-header">
+    @for (dayName of weekDays; track dayName) {
+      <div class="day-name">{{ dayName }}</div>
+    }
+  </div>
+
+  <div class="calendar-grid month-days">
+    @for (day of days; track day) {
+      <div class="day-cell">
+        <span class="day-number">{{ day }}</span>
+        
+        
+        @for (task of getTasksForDay(day); track task.id) {
+          <div class="event-badge">
+            {{ task.name }}
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<aside class="sidebar">
+  <div class="logo-box">
+    <span>Task Manager</span>
+  </div>
+
+  <nav class="nav-list">
+    <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
+      <i class="fa-solid fa-border-all"></i> Dashboard
+    </a>
+    
+    <a class="nav-link" routerLink="/projects" routerLinkActive="active">
+      <i class="fa-regular fa-folder"></i> Projects
+    </a>
+    
+    <a class="nav-link" routerLink="/tasks" routerLinkActive="active">
+      <i class="fa-solid fa-list-check"></i> Tasks
+    </a>
+    
+    <a class="nav-link" routerLink="/calendar" routerLinkActive="active">
+      <i class="fa-regular fa-calendar"></i> Calendar
+    </a>
+  </nav>
+
+  <button class="btn-logout" (click)="onLogout()">
+    <i class="fa-solid fa-arrow-right-to-bracket"></i> Log out
+  </button>
+</aside>
